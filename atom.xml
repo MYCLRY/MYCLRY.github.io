@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://myclry.github.io/</id>
     <title>clry</title>
-    <updated>2019-06-23T07:40:23.709Z</updated>
+    <updated>2019-06-23T14:58:35.116Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://myclry.github.io/"/>
     <link rel="self" href="https://myclry.github.io//atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>赤龙绕月</subtitle>
     <logo>https://myclry.github.io//images/avatar.png</logo>
     <icon>https://myclry.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, clry</rights>
@@ -16,7 +16,27 @@
         <link href="https://myclry.github.io//post/python-xue-xi">
         </link>
         <updated>2019-06-23T07:38:07.000Z</updated>
-        <content type="html"><![CDATA[<p>变量、函数、模板</p>
+        <summary type="html"><![CDATA[<p>Python基础教程</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Python基础教程</p>
+<!-- more -->
+<p>暂停程序运行：</p>
+<pre><code>raw_input(&quot;Press &lt;enter&gt;&quot;)
+</code></pre>
+<p>列表可以修改，元组不能</p>
+<p>tuple(seq)把序列转换为元组</p>
+<p>strip方法返回去除两侧空格的字符串</p>
+<p>translate方法替换单个字符，需要一张maketrans创建的转换表</p>
+<p>fromkeys方法使用给定的键建立新的字典</p>
+<p>exec语句会执行一系列Python语句，而eveal会计算Python表达式并返回结果值。</p>
+<p>文档字符串，def语句后边、模块、类的开头直接写字符串,<code>类.__doc__</code>可获得文档字符串。</p>
+<p>任意多的参数</p>
+<pre><code>def print_params(*params):
+	print(params)
+</code></pre>
+<p>将其他类名卸载class语句后的原括号内可以指定超类</p>
+<p>查看一个类是否是另一个类的子类，使用issubclass</p>
+<p>捕捉到异常但是又想重新引发它，调用不带参数的raise</p>
 ]]></content>
     </entry>
 </feed>
