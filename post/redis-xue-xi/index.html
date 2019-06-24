@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Redis学习 | clry</title>
+<link rel="shortcut icon" href="https://myclry.github.io//favicon.ico?v=1561387517852">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://myclry.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://myclry.github.io/">
+  <img class="avatar" src="https://myclry.github.io//images/avatar.png?v=1561387517852" alt="">
+  </a>
+  <h1 class="site-title">
+    clry
+  </h1>
+  <p class="site-description">
+    赤龙绕月
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Redis学习
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-06-24 ·
+              </time>
+              
+                <a href="https://myclry.github.io//tag/6zxmYu9IZ" class="post-tag">
+                  # Redis
+                </a>
+              
+            </div>
+            
+            <div class="post-content">
+              <p>Redis是一个开源（BSD许可），内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理。它支持字符串、哈希表、列表、集合、有序集合，位图，hyperloglogs等数据类型。内置复制、Lua脚本、LRU收回、事务以及不同级别磁盘持久化功能，同时通过Redis Sentinel提供高可用，通过Redis Cluster提供自动分区。</p>
+<!-- more -->
+<p><a href="https://www.redis.net.cn/">Redis中文网</a></p>
+<p><a href="https://github.com/MicrosoftArchive/redis/tags">Redis window版</a></p>
+<p><a href="https://www.redis.net.cn/tutorial/3501.html">Redis 教程</a></p>
+<p><a href="https://www.runoob.com/redis/redis-install.html">runoob网 redis学习</a></p>
+<h1 id="启动zip版本">启动zip版本</h1>
+<h2 id="服务器">服务器</h2>
+<p>使用 cd 命令切换目录到 C:\redis 运行：</p>
+<pre><code>redis-server.exe redis.windows.conf
+</code></pre>
+<h2 id="客户端">客户端</h2>
+<p>这时候另启一个 cmd 窗口，原来的不要关闭，不然就无法访问服务端了。</p>
+<p>切换到 redis 目录下运行:</p>
+<pre><code>redis-cli.exe -h 127.0.0.1 -p 6379
+</code></pre>
+<h1 id="redis命令">Redis命令</h1>
+<h2 id="redis-发布订阅"><a href="https://www.redis.net.cn/tutorial/3514.html">Redis 发布订阅</a></h2>
+<p>Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接收消息。</p>
+<p>Redis 客户端可以订阅任意数量的频道。</p>
+<p>创建了订阅频道名为 redisChat:</p>
+<pre><code>SUBSCRIBE redisChat
+</code></pre>
+<p>重新开启个 redis 客户端，然后在同一个频道 redisChat 发布消息，订阅者就能接收到消息。</p>
+<pre><code> PUBLISH redisChat &quot;Redis is a great caching technique&quot;
+</code></pre>
+<h1 id="工具">工具</h1>
+<p>RedisStudio：<a href="https://github.com/cinience/RedisStudio">https://github.com/cinience/RedisStudio</a></p>
+<p>RedisDesktopManager:<a href="https://github.com/uglide/RedisDesktopManager">https://github.com/uglide/RedisDesktopManager</a></p>
+
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://myclry.github.io//post/python-xue-xi">
+              <h3 class="post-title">
+                Python学习
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://myclry.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://myclry.github.io/</id>
     <title>clry</title>
-    <updated>2019-06-23T14:58:35.116Z</updated>
+    <updated>2019-06-24T14:45:22.418Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://myclry.github.io/"/>
     <link rel="self" href="https://myclry.github.io//atom.xml"/>
@@ -10,6 +10,45 @@
     <logo>https://myclry.github.io//images/avatar.png</logo>
     <icon>https://myclry.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, clry</rights>
+    <entry>
+        <title type="html"><![CDATA[Redis学习]]></title>
+        <id>https://myclry.github.io//post/redis-xue-xi</id>
+        <link href="https://myclry.github.io//post/redis-xue-xi">
+        </link>
+        <updated>2019-06-24T12:40:31.000Z</updated>
+        <summary type="html"><![CDATA[<p>Redis是一个开源（BSD许可），内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理。它支持字符串、哈希表、列表、集合、有序集合，位图，hyperloglogs等数据类型。内置复制、Lua脚本、LRU收回、事务以及不同级别磁盘持久化功能，同时通过Redis Sentinel提供高可用，通过Redis Cluster提供自动分区。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Redis是一个开源（BSD许可），内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理。它支持字符串、哈希表、列表、集合、有序集合，位图，hyperloglogs等数据类型。内置复制、Lua脚本、LRU收回、事务以及不同级别磁盘持久化功能，同时通过Redis Sentinel提供高可用，通过Redis Cluster提供自动分区。</p>
+<!-- more -->
+<p><a href="https://www.redis.net.cn/">Redis中文网</a></p>
+<p><a href="https://github.com/MicrosoftArchive/redis/tags">Redis window版</a></p>
+<p><a href="https://www.redis.net.cn/tutorial/3501.html">Redis 教程</a></p>
+<p><a href="https://www.runoob.com/redis/redis-install.html">runoob网 redis学习</a></p>
+<h1 id="启动zip版本">启动zip版本</h1>
+<h2 id="服务器">服务器</h2>
+<p>使用 cd 命令切换目录到 C:\redis 运行：</p>
+<pre><code>redis-server.exe redis.windows.conf
+</code></pre>
+<h2 id="客户端">客户端</h2>
+<p>这时候另启一个 cmd 窗口，原来的不要关闭，不然就无法访问服务端了。</p>
+<p>切换到 redis 目录下运行:</p>
+<pre><code>redis-cli.exe -h 127.0.0.1 -p 6379
+</code></pre>
+<h1 id="redis命令">Redis命令</h1>
+<h2 id="redis-发布订阅"><a href="https://www.redis.net.cn/tutorial/3514.html">Redis 发布订阅</a></h2>
+<p>Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接收消息。</p>
+<p>Redis 客户端可以订阅任意数量的频道。</p>
+<p>创建了订阅频道名为 redisChat:</p>
+<pre><code>SUBSCRIBE redisChat
+</code></pre>
+<p>重新开启个 redis 客户端，然后在同一个频道 redisChat 发布消息，订阅者就能接收到消息。</p>
+<pre><code> PUBLISH redisChat &quot;Redis is a great caching technique&quot;
+</code></pre>
+<h1 id="工具">工具</h1>
+<p>RedisStudio：<a href="https://github.com/cinience/RedisStudio">https://github.com/cinience/RedisStudio</a></p>
+<p>RedisDesktopManager:<a href="https://github.com/uglide/RedisDesktopManager">https://github.com/uglide/RedisDesktopManager</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Python学习]]></title>
         <id>https://myclry.github.io//post/python-xue-xi</id>
@@ -21,7 +60,12 @@
         <content type="html"><![CDATA[<p>Python基础教程</p>
 <!-- more -->
 <p>暂停程序运行：</p>
-<pre><code>raw_input(&quot;Press &lt;enter&gt;&quot;)
+<pre><code>#Python2
+raw_input(&quot;Press &lt;enter&gt;&quot;)
+#Python3
+input()
+os.system(&quot;pause&quot;)
+time.sleep(&quot;second&quot;)
 </code></pre>
 <p>列表可以修改，元组不能</p>
 <p>tuple(seq)把序列转换为元组</p>
