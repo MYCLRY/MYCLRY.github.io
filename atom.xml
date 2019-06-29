@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://myclry.github.io/</id>
     <title>clry</title>
-    <updated>2019-06-25T14:15:09.218Z</updated>
+    <updated>2019-06-29T08:54:31.920Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://myclry.github.io/"/>
     <link rel="self" href="https://myclry.github.io//atom.xml"/>
@@ -87,6 +87,43 @@ time.sleep(&quot;second&quot;)
 <p>递归生成器</p>
 <p>通用生成器</p>
 <p>生成器是一个包含yield关键字的函数</p>
+<p>包，必须包含__init__.py文件</p>
+<p>使用dir函数查看模块包含的内容</p>
+<p>sys.platform模块变量是解释器正在其上运行的“平台”的名称</p>
+<p>os.sep模块用于路径名中的分隔符</p>
+<p>os.linesep用于文本文件的字符串分隔符</p>
+<p>os.system与os.startfile启动外部程序</p>
+<p>webbrowser模块打开网址</p>
+<p>fileinput遍历文本文件所有行</p>
+<p>集合Set</p>
+<p>堆heap</p>
+<p>双端队列 deque</p>
+<p>difflib库计算两个序列的相似度</p>
+<p>timeit、profile、trace代码效率分析</p>
+<p>logging日志</p>
+<p>GUI工具包 wxPython</p>
+<p>其他GUI包：Tkinter PythonWin JavaSwing PyGTK PyQt</p>
+<p>自动序列号：shelve与pickle</p>
+<p>数据库PySQLite</p>
+<p>网络：socketserver,urllib,urllib2</p>
+<p>异步，标准库中的asyncore与asyncahat</p>
+<p>Twisted异步网络框架</p>
+<p>Tidy修复不规范的HTML文档</p>
+<p>Beautiful Soup解析HTML</p>
+<p>CGI创建动态网页</p>
+<p>使用cgitb调试CGI</p>
+<p>mod_python是Apache网络服务器的模块</p>
+<p>网络应用程序框架：Django,Pylons，TurboGears</p>
+<p>XML_RPC与SOAP远程过程调用</p>
+<p>测试工具：profiling,PyChecker,PyLint,unitest，doctest</p>
+<p>扩展Python，使用SWING,Jython(Java),IronPython(C#),CPython</p>
+<p>其他提高运行速度：Psyco,Pyrex,PyPy,Weave,NumPy,ctypes,Subprocess,PyCXX,SIP,Boost.Python,Modulator</p>
+<p>Distutils直接支持SWING</p>
+<p>Distutils程序打包</p>
+<p>sdist命令用于源代码发布</p>
+<p>使用bdist命令创建Windows安装程序和Linux rpm文件</p>
+<p>py2exe生成可执行的Windows程序exe文件</p>
+<p>ConfigParser配置文件</p>
 ]]></content>
     </entry>
 </feed>
