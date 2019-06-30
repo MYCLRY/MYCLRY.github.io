@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Redis学习 | clry</title>
-<link rel="shortcut icon" href="https://myclry.github.io//favicon.ico?v=1561798185903">
+<link rel="shortcut icon" href="https://myclry.github.io//favicon.ico?v=1561880405779">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://myclry.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://myclry.github.io/">
-  <img class="avatar" src="https://myclry.github.io//images/avatar.png?v=1561798185903" alt="">
+  <img class="avatar" src="https://myclry.github.io//images/avatar.png?v=1561880405779" alt="">
   </a>
   <h1 class="site-title">
     clry
@@ -87,6 +87,9 @@
               
             </div>
             
+              <div class="post-feature-image" style="background-image: url('https://myclry.github.io//post-images/redis-xue-xi.jpg')">
+              </div>
+            
             <div class="post-content">
               <p>Redis是一个开源（BSD许可），内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理。它支持字符串、哈希表、列表、集合、有序集合，位图，hyperloglogs等数据类型。内置复制、Lua脚本、LRU收回、事务以及不同级别磁盘持久化功能，同时通过Redis Sentinel提供高可用，通过Redis Cluster提供自动分区。</p>
 <!-- more -->
@@ -114,6 +117,103 @@
 <p>重新开启个 redis 客户端，然后在同一个频道 redisChat 发布消息，订阅者就能接收到消息。</p>
 <pre><code> PUBLISH redisChat &quot;Redis is a great caching technique&quot;
 </code></pre>
+<h1 id="redis客户端"><a href="https://www.redis.net.cn/clients/">Redis客户端</a></h1>
+<p><a href="https://www.redis.net.cn/clients/">https://www.redis.net.cn/clients/</a></p>
+<h2 id="python">Python</h2>
+<p><a href="https://www.cnblogs.com/zhaohuhu/p/9140673.html#_label2_13">https://www.cnblogs.com/zhaohuhu/p/9140673.html#_label2_13</a></p>
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+import redis
+
+
+class RedisHelper:
+
+    def __init__(self):
+        self.__conn = redis.Redis(host='10.211.55.4')
+        self.chan_sub = 'fm104.5'
+        self.chan_pub = 'fm104.5'
+
+    def public(self, msg):
+        self.__conn.publish(self.chan_pub, msg)
+        return True
+
+    def subscribe(self):
+        pub = self.__conn.pubsub()
+        pub.subscribe(self.chan_sub)
+        pub.parse_response()
+        return pub
+</code></pre>
+<p>订阅者</p>
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+ 
+from monitor.RedisHelper import RedisHelper
+ 
+obj = RedisHelper()
+redis_sub = obj.subscribe()
+ 
+while True:
+    msg= redis_sub.parse_response()
+    print msg
+</code></pre>
+<p>发布者</p>
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+ 
+from monitor.RedisHelper import RedisHelper
+ 
+obj = RedisHelper()
+obj.public('hello')
+</code></pre>
+<p><a href="https://pypi.org/project/redis/">https://pypi.org/project/redis/</a></p>
+<p><a href="https://github.com/andymccurdy/redis-py">redis-py</a></p>
+<p><a href="https://www.cnblogs.com/leiziv5/p/8308563.htmlhttps://www.cnblogs.com/leiziv5/p/8308563.html">python 实现redis订阅发布功能</a></p>
+<pre><code>import  redis
+class RedisSubscri():
+    def __init__(self,host):
+        self.coon=redis.Redis(host=&quot;127.0.0.1&quot;)
+    def publish(self,message,channel):#发布
+        self.coon.publish(channel,message)
+    def subscribe(self,channel):#订阅
+        pub=self.coon.pubsub()
+        pub.subscribe(channel)
+        pub.parse_response()
+        return  pub
+    def unsubsceribe(self,channel):#取消订阅
+        self.coon.pubsub().unsubscribe(channel)
+</code></pre>
+<p><a href="https://blog.csdn.net/liao392781/article/details/81180999">Python3学习（二十七）：python实现Redis的订阅与发布（sub-pub机制）</a></p>
+<p>发布者</p>
+<pre><code>#coding:utf-8
+import time
+import redis
+ 
+number_list = ['300033', '300032', '300031', '300030']
+signal = ['1', '-1', '1', '-1']
+ 
+rc = redis.StrictRedis(host='***', port='6379', db=3, password='********')
+for i in range(len(number_list)):
+    value_new = str(number_list[i]) + ' ' + str(signal[i])
+    rc.publish(&quot;liao&quot;, value_new)  #发布消息到liao
+</code></pre>
+<p>订阅者</p>
+<pre><code>#coding:utf-8
+import time
+import redis
+ 
+rc = redis.StrictRedis(host='****', port='6379', db=3, password='******')
+ps = rc.pubsub()
+ps.subscribe('liao')  #从liao订阅消息
+for item in ps.listen():		#监听状态：有消息发布了就拿过来
+    if item['type'] == 'message':
+        print item['channel']
+        print item['data']
+</code></pre>
+<p>总结，要点有两个：</p>
+<p>一是连接方式。使用python连接redis有三种方式：①使用库中的Redis类（或StrictRedis类，其实差不多）；②使用ConnectionPool连接池（可保持长连接）；③使用Sentinel类（如果有多个redis做集群时，程序会自己选择一个合适的连接）。</p>
+<p>二是订阅方法。这里使用的是StrictRedis类中的pubsub方法。连接好之后，可使用subscribe或psubscribe方法来订阅redis消息。其中subscribe是订阅一个频道，psubscribe可订阅多个频道（这样写的时候，作为参数的频道应该是一个列表）。之后就可以开始监听了。</p>
+<h1 id="java">Java</h1>
 <h1 id="工具">工具</h1>
 <p>RedisStudio：<a href="https://github.com/cinience/RedisStudio">https://github.com/cinience/RedisStudio</a></p>
 <p>RedisDesktopManager:<a href="https://github.com/uglide/RedisDesktopManager">https://github.com/uglide/RedisDesktopManager</a></p>

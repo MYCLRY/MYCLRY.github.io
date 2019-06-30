@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://myclry.github.io/</id>
     <title>clry</title>
-    <updated>2019-06-29T08:54:31.920Z</updated>
+    <updated>2019-06-30T07:40:09.205Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://myclry.github.io/"/>
     <link rel="self" href="https://myclry.github.io//atom.xml"/>
@@ -44,6 +44,103 @@
 <p>重新开启个 redis 客户端，然后在同一个频道 redisChat 发布消息，订阅者就能接收到消息。</p>
 <pre><code> PUBLISH redisChat &quot;Redis is a great caching technique&quot;
 </code></pre>
+<h1 id="redis客户端"><a href="https://www.redis.net.cn/clients/">Redis客户端</a></h1>
+<p><a href="https://www.redis.net.cn/clients/">https://www.redis.net.cn/clients/</a></p>
+<h2 id="python">Python</h2>
+<p><a href="https://www.cnblogs.com/zhaohuhu/p/9140673.html#_label2_13">https://www.cnblogs.com/zhaohuhu/p/9140673.html#_label2_13</a></p>
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+import redis
+
+
+class RedisHelper:
+
+    def __init__(self):
+        self.__conn = redis.Redis(host='10.211.55.4')
+        self.chan_sub = 'fm104.5'
+        self.chan_pub = 'fm104.5'
+
+    def public(self, msg):
+        self.__conn.publish(self.chan_pub, msg)
+        return True
+
+    def subscribe(self):
+        pub = self.__conn.pubsub()
+        pub.subscribe(self.chan_sub)
+        pub.parse_response()
+        return pub
+</code></pre>
+<p>订阅者</p>
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+ 
+from monitor.RedisHelper import RedisHelper
+ 
+obj = RedisHelper()
+redis_sub = obj.subscribe()
+ 
+while True:
+    msg= redis_sub.parse_response()
+    print msg
+</code></pre>
+<p>发布者</p>
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+ 
+from monitor.RedisHelper import RedisHelper
+ 
+obj = RedisHelper()
+obj.public('hello')
+</code></pre>
+<p><a href="https://pypi.org/project/redis/">https://pypi.org/project/redis/</a></p>
+<p><a href="https://github.com/andymccurdy/redis-py">redis-py</a></p>
+<p><a href="https://www.cnblogs.com/leiziv5/p/8308563.htmlhttps://www.cnblogs.com/leiziv5/p/8308563.html">python 实现redis订阅发布功能</a></p>
+<pre><code>import  redis
+class RedisSubscri():
+    def __init__(self,host):
+        self.coon=redis.Redis(host=&quot;127.0.0.1&quot;)
+    def publish(self,message,channel):#发布
+        self.coon.publish(channel,message)
+    def subscribe(self,channel):#订阅
+        pub=self.coon.pubsub()
+        pub.subscribe(channel)
+        pub.parse_response()
+        return  pub
+    def unsubsceribe(self,channel):#取消订阅
+        self.coon.pubsub().unsubscribe(channel)
+</code></pre>
+<p><a href="https://blog.csdn.net/liao392781/article/details/81180999">Python3学习（二十七）：python实现Redis的订阅与发布（sub-pub机制）</a></p>
+<p>发布者</p>
+<pre><code>#coding:utf-8
+import time
+import redis
+ 
+number_list = ['300033', '300032', '300031', '300030']
+signal = ['1', '-1', '1', '-1']
+ 
+rc = redis.StrictRedis(host='***', port='6379', db=3, password='********')
+for i in range(len(number_list)):
+    value_new = str(number_list[i]) + ' ' + str(signal[i])
+    rc.publish(&quot;liao&quot;, value_new)  #发布消息到liao
+</code></pre>
+<p>订阅者</p>
+<pre><code>#coding:utf-8
+import time
+import redis
+ 
+rc = redis.StrictRedis(host='****', port='6379', db=3, password='******')
+ps = rc.pubsub()
+ps.subscribe('liao')  #从liao订阅消息
+for item in ps.listen():		#监听状态：有消息发布了就拿过来
+    if item['type'] == 'message':
+        print item['channel']
+        print item['data']
+</code></pre>
+<p>总结，要点有两个：</p>
+<p>一是连接方式。使用python连接redis有三种方式：①使用库中的Redis类（或StrictRedis类，其实差不多）；②使用ConnectionPool连接池（可保持长连接）；③使用Sentinel类（如果有多个redis做集群时，程序会自己选择一个合适的连接）。</p>
+<p>二是订阅方法。这里使用的是StrictRedis类中的pubsub方法。连接好之后，可使用subscribe或psubscribe方法来订阅redis消息。其中subscribe是订阅一个频道，psubscribe可订阅多个频道（这样写的时候，作为参数的频道应该是一个列表）。之后就可以开始监听了。</p>
+<h1 id="java">Java</h1>
 <h1 id="工具">工具</h1>
 <p>RedisStudio：<a href="https://github.com/cinience/RedisStudio">https://github.com/cinience/RedisStudio</a></p>
 <p>RedisDesktopManager:<a href="https://github.com/uglide/RedisDesktopManager">https://github.com/uglide/RedisDesktopManager</a></p>
@@ -124,6 +221,31 @@ time.sleep(&quot;second&quot;)
 <p>使用bdist命令创建Windows安装程序和Linux rpm文件</p>
 <p>py2exe生成可执行的Windows程序exe文件</p>
 <p>ConfigParser配置文件</p>
+<p>项目1</p>
+<p>txt转网页(Wiki)</p>
+<p>项目2</p>
+<p>图形生成工具包：<a href="http://www.vex.net/parnassus">Vaults of Parnassus</a></p>
+<p>ReportLab与pyx、Matplotlib、pylab画图库</p>
+<p>项目3</p>
+<p>W3C、W3School、SAX网站学习XML</p>
+<p>XML处理：PyXML</p>
+<p>项目4</p>
+<p>nntplib库，NNTP网络新闻组传输协议</p>
+<p>项目5</p>
+<p>使用asyncore框架</p>
+<p>项目6</p>
+<p>CGI远程编辑</p>
+<p>项目7</p>
+<p>数据库：PostgreSQL,MySQL</p>
+<p>使用psycopg与MySQLdb</p>
+<p>其他数据库：Metakit,Berkeley DB</p>
+<p>项目8</p>
+<p>P2P</p>
+<p>模块：xmlrpclib,SimpleXMLPRCServer</p>
+<p>项目9</p>
+<p>wxPython</p>
+<p>项目10</p>
+<p>Pygame</p>
 ]]></content>
     </entry>
 </feed>
